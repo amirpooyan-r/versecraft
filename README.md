@@ -1,26 +1,34 @@
 # VerseCraft
-Create clean, shareable Bible verse images.
+Create clean, shareable Bible verse images for social media.
 
 ## Overview
-VerseCraft is an Android-first, offline-only app for turning Bible verses into
-clean, shareable images. The goal is simple:
-- Select a Bible verse
-- Render it as a beautiful image
-- Export and share on social media
+VerseCraft helps users turn Bible verses into beautiful images suitable for
+sharing via messaging apps, RCS, and social networks (Instagram, Facebook,
+etc.). It is not a Bible reader, not a study tool, and not a search engine.
 
-There are no accounts, no analytics, no tracking, and no APIs in v1.0.
-VerseCraft is not a Bible reader and not a search app.
+VerseCraft is offline-first. There are no accounts, no analytics, no tracking,
+and no APIs in v1.0.
 
-## Supported translations (v1.0)
-- KJV (English) — Public Domain
-- WEB (English) — Public Domain
-- BSB (English) — Public Domain (since 2023)
-- POV (Persian Old Version) — Public Domain
+## Why VerseCraft Exists
+There are many Bible reading apps, but very few free, open-source tools focused
+specifically on generating high-quality verse images for sharing. VerseCraft
+aims for simplicity, beauty, and respect for Scripture.
 
-Each translation is stored in its own SQLite database file.
+## Supported languages & translations (v1.0)
+UI languages:
+- English
+- Persian (Farsi)
 
-## Technical stack
-- Flutter (Android-first)
+Built-in Bible translations (Public Domain only):
+- KJV (English)
+- WEB (English)
+- BSB (English)
+- POV – Persian Old Version
+
+Each translation is stored as a separate SQLite database file.
+
+## Technical overview
+- Flutter (Android-first; iOS/Web/Desktop planned)
 - SQLite (one database per translation)
 - Designed to run well on older Android devices
 
@@ -36,17 +44,15 @@ flutter pub get
 flutter run
 ```
 
-## Credits / License
-MIT License. All Bible texts used are Public Domain.
+## A Note on Purpose
+VerseCraft is offered freely as a gift to the Christian community. While
+licensed under MIT, we encourage users and organizations to share improvements
+back with the community whenever possible, in the spirit of service,
+generosity, and stewardship.
 
-## نسخه فارسی
-ورس‌کرفت یک اپلیکیشن آفلاین است که برای ساخت تصویرهای تمیز و قابل‌اشتراک از آیات
-کتاب مقدس طراحی شده است. هدف پروژه ساده است: انتخاب آیه، تولید تصویر زیبا، و
-اشتراک‌گذاری در شبکه‌های اجتماعی.
+> "Whatever you do, work at it with all your heart, as working for the Lord,
+> not for human masters."
+> — Colossians 3:23
 
-در نسخه ۱٫۰ هیچ حساب کاربری، تحلیل‌گر رفتار، ردیابی یا API وجود ندارد. این برنامه
-«کتاب‌خوان» نیست و قابلیت جست‌وجو هم ندارد. تمرکز روی تجربه‌ی ساخت تصویر آیه است.
-
-تمام متون کتاب مقدس که در نسخه ۱٫۰ استفاده می‌شوند در حوزه عمومی هستند و با احترام
-به کپی‌رایت انتخاب شده‌اند. هر ترجمه به صورت یک پایگاه داده SQLite جداگانه نگهداری
-می‌شود.
+## License
+MIT License. All Bible texts included in v1.0 are Public Domain.
