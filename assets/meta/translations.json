@@ -1,0 +1,37 @@
+{
+  "defaultTranslationId": "bsb",
+  "items": [
+    {
+      "id": "bsb",
+      "name": "Berean Standard Bible",
+      "lang": "en",
+      "direction": "ltr",
+      "assetDb": "assets/bibles/bsb.sqlite",
+      "publicDomain": true
+    },
+    {
+      "id": "web",
+      "name": "World English Bible",
+      "lang": "en",
+      "direction": "ltr",
+      "assetDb": "assets/bibles/web.sqlite",
+      "publicDomain": true
+    },
+    {
+      "id": "kjv",
+      "name": "King James Version",
+      "lang": "en",
+      "direction": "ltr",
+      "assetDb": "assets/bibles/kjv.sqlite",
+      "publicDomain": true
+    },
+    {
+      "id": "pov",
+      "name": "Persian Old Version",
+      "lang": "fa",
+      "direction": "rtl",
+      "assetDb": "assets/bibles/pov.sqlite",
+      "publicDomain": true
+    }
+  ]
+}
