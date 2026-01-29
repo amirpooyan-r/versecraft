@@ -85,9 +85,7 @@ class _VersePickerPageState extends State<VersePickerPage> {
     final verses = mockVerses();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(strings.selectVerse),
-      ),
+      appBar: AppBar(title: Text(strings.selectVerse)),
       body: SafeArea(
         child: Column(
           children: [
@@ -97,17 +95,14 @@ class _VersePickerPageState extends State<VersePickerPage> {
                 children: [
                   Expanded(
                     child: DropdownButtonFormField<MockBook>(
-                      value: _selectedBook,
+                      initialValue: _selectedBook,
                       decoration: InputDecoration(
                         labelText: strings.book,
                         border: const OutlineInputBorder(),
                       ),
                       items: [
                         for (final book in mockBooks)
-                          DropdownMenuItem(
-                            value: book,
-                            child: Text(book.name),
-                          ),
+                          DropdownMenuItem(value: book, child: Text(book.name)),
                       ],
                       onChanged: (value) {
                         if (value == null) {
@@ -125,7 +120,7 @@ class _VersePickerPageState extends State<VersePickerPage> {
                   SizedBox(
                     width: 120,
                     child: DropdownButtonFormField<int>(
-                      value: _selectedChapter,
+                      initialValue: _selectedChapter,
                       decoration: InputDecoration(
                         labelText: strings.chapter,
                         border: const OutlineInputBorder(),
@@ -164,7 +159,8 @@ class _VersePickerPageState extends State<VersePickerPage> {
                 itemCount: verses.length,
                 itemBuilder: (context, index) {
                   final verse = verses[index];
-                  final isSelected = _startVerse != null &&
+                  final isSelected =
+                      _startVerse != null &&
                       _endVerse != null &&
                       verse >= _startVerse! &&
                       verse <= _endVerse!;

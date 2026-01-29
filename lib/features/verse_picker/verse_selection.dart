@@ -20,9 +20,7 @@ class VerseSelection {
   bool get isRange => startVerse != endVerse;
 
   String formatReference({required TextDirection dir}) {
-    final verse = isRange
-        ? '$startVerse–$endVerse'
-        : '$startVerse';
+    final verse = isRange ? '$startVerse–$endVerse' : '$startVerse';
     return '$bookName $chapter:$verse';
   }
 }

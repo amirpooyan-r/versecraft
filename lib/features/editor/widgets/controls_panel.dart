@@ -29,22 +29,13 @@ class ControlsPanel extends StatelessWidget {
       runSpacing: 12,
       alignment: WrapAlignment.center,
       children: [
-        OutlinedButton(
-          onPressed: onSelectVerse,
-          child: Text(selectVerseLabel),
-        ),
+        OutlinedButton(onPressed: onSelectVerse, child: Text(selectVerseLabel)),
         OutlinedButton(
           onPressed: onSelectTranslation,
           child: Text(translationLabel),
         ),
-        OutlinedButton(
-          onPressed: onSelectLayout,
-          child: Text(layoutLabel),
-        ),
-        FilledButton(
-          onPressed: onExport,
-          child: Text(exportLabel),
-        ),
+        OutlinedButton(onPressed: onSelectLayout, child: Text(layoutLabel)),
+        FilledButton(onPressed: onExport, child: Text(exportLabel)),
       ],
     );
   }

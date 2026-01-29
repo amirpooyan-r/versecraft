@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/sqlite/sqlite_asset_db.dart';
+import '../../core/sqlite/sqlite_verse_source.dart';
 import '../../core/utils/text_direction.dart';
 import '../../i18n/l10n.dart';
 import '../verse_picker/verse_picker_page.dart';
@@ -16,7 +18,12 @@ class EditorPage extends StatefulWidget {
 
 class _EditorPageState extends State<EditorPage> {
   VerseSelection? _selection;
-  String _translationId = 'bsb';
+  final String _translationId = 'bsb';
+  final SqliteVerseSource _verseSource = SqliteVerseSource(
+    const SqliteAssetDb(),
+  );
+  String? _verseText;
+  bool _isLoading = false;
 
   Future<void> _openVersePicker() async {
     final result = await Navigator.push<VerseSelection>(
@@ -37,6 +44,33 @@ class _EditorPageState extends State<EditorPage> {
     setState(() {
       _selection = result;
     });
+
+    await _loadVerses(result);
+  }
+
+  Future<void> _loadVerses(VerseSelection selection) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final verses = await _verseSource.getVerses(
+      translationId: selection.translationId,
+      bookId: selection.bookId,
+      chapter: selection.chapter,
+      startVerse: selection.startVerse,
+      endVerse: selection.endVerse,
+    );
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _verseText = verses.isEmpty
+          ? 'Verse text not available yet (SQLite DB not installed).'
+          : verses.join(' ');
+      _isLoading = false;
+    });
   }
 
   @override
@@ -46,6 +80,9 @@ class _EditorPageState extends State<EditorPage> {
     final reference = _selection == null
         ? 'John 3:16'
         : _selection!.formatReference(dir: textDirection);
+    final verseText = _selection == null
+        ? 'For God so loved the world...'
+        : _verseText;
 
     return Scaffold(
       appBar: AppBar(title: Text(strings.appTitle)),
@@ -62,7 +99,9 @@ class _EditorPageState extends State<EditorPage> {
                       aspectRatio: 1,
                       child: VerseCard(
                         textDirection: textDirection,
-                        verseText: 'For God so loved the world...',
+                        verseText:
+                            verseText ??
+                            'Verse text not available yet (SQLite DB not installed).',
                         reference: reference,
                       ),
                     ),
@@ -70,6 +109,15 @@ class _EditorPageState extends State<EditorPage> {
                 ),
               ),
               const SizedBox(height: 16),
+              if (_isLoading) ...[
+                const SizedBox(height: 8),
+                const SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                const SizedBox(height: 8),
+              ],
               ControlsPanel(
                 selectVerseLabel: strings.selectVerse,
                 translationLabel: strings.translationLabel,
