@@ -6,6 +6,10 @@ import 'strings_fa.dart';
 abstract class VerseStrings {
   String get appTitle;
   String get selectVerse;
+  String get done;
+  String get cancel;
+  String get book;
+  String get chapter;
   String get translationLabel;
   String get layoutLabel;
   String get exportLabel;

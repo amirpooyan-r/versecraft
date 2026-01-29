@@ -8,7 +8,7 @@ class AppRoutes {
   static const String versePicker = '/verse-picker';
 
   static Map<String, WidgetBuilder> get routes => {
-    editor: (_) => const EditorPage(),
-    versePicker: (_) => const VersePickerPage(),
-  };
+        editor: (_) => const EditorPage(),
+        versePicker: (_) => const VersePickerPage(translationId: 'bsb'),
+      };
 }

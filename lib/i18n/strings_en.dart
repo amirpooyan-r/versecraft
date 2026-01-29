@@ -10,6 +10,18 @@ class StringsEn extends VerseStrings {
   String get selectVerse => 'Select Verse';
 
   @override
+  String get done => 'Done';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get book => 'Book';
+
+  @override
+  String get chapter => 'Chapter';
+
+  @override
   String get translationLabel => 'Translation: BSB';
 
   @override

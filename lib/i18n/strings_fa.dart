@@ -10,6 +10,18 @@ class StringsFa extends VerseStrings {
   String get selectVerse => 'انتخاب آیه';
 
   @override
+  String get done => 'تأیید';
+
+  @override
+  String get cancel => 'لغو';
+
+  @override
+  String get book => 'کتاب';
+
+  @override
+  String get chapter => 'فصل';
+
+  @override
   String get translationLabel => 'ترجمه: BSB';
 
   @override
