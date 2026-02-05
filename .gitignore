@@ -27,3 +27,17 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# --- Python tooling (tools/build_db) ---
+.venv/
+venv/
+env/
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local inputs/outputs for build_db (do not commit Bible sources/DB artifacts)
+tools/build_db/sources/
+tools/build_db/out/
+tools/build_db/**/*.sqlite
