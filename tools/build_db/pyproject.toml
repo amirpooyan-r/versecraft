@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=69.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "versecraft_build_db"
+version = "0.1.0"
+description = "Dev-only tooling for building VerseCraft SQLite databases"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+versecraft-build-db = "versecraft_build_db.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
