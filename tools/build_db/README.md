@@ -63,6 +63,7 @@ The `.venv/` folder must NOT be committed.
 
 2) Install pinned dependencies
 - pip install -r requirements.txt
+- pip install -e .
 
 ### macOS / Linux
 
@@ -73,6 +74,11 @@ The `.venv/` folder must NOT be committed.
 
 2) Install pinned dependencies
 - pip install -r requirements.txt
+- pip install -e .
+
+3) Verify CLI wiring
+- build-db --help
+- python -m build_db --help
 
 ---
 
