@@ -1,2 +1,0 @@
-[console_scripts]
-build-db = build_db.cli:main

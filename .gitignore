@@ -37,6 +37,12 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
+# Python packaging artifacts
+*.egg-info/
+*.dist-info/
+dist/
+build/
+
 # Local inputs/outputs for build_db (do not commit Bible sources/DB artifacts)
 tools/build_db/sources/
 tools/build_db/out/
