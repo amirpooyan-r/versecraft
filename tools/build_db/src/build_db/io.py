@@ -34,7 +34,8 @@ def safe_extract_zip(zip_path: Path, dest_dir: Path) -> None:
     destination.mkdir(parents=True, exist_ok=True)
     with ZipFile(zip_path) as archive:
         for member in archive.infolist():
-            member_path = PurePosixPath(member.filename)
+            normalized_name = member.filename.replace("\\", "/")
+            member_path = PurePosixPath(normalized_name)
             if member_path.is_absolute() or ".." in member_path.parts:
                 raise ValueError(f"Unsafe zip entry: {member.filename}")
             target = (destination / member_path).resolve()

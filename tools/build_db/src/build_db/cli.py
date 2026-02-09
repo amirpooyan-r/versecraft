@@ -27,6 +27,11 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Parser mode (default: auto)",
     )
     parser.add_argument(
+        "--verify-parsers",
+        action="store_true",
+        help="In auto mode, verify fallback output against grammar when available",
+    )
+    parser.add_argument(
         "--sanity",
         default="jhn 3:16-18",
         help='Sanity check reference, e.g. "jhn 3:16-18"',
@@ -41,7 +46,11 @@ def main(argv: list[str] | None = None) -> int:
     source = open_input_source(args.input)
     try:
         usfm_files = discover_usfm_files(source.source_dir)
-        records = parse_all(usfm_files, parser=args.parser)
+        records = parse_all(
+            usfm_files,
+            parser=args.parser,
+            verify_parsers=args.verify_parsers,
+        )
         validate_records(records)
         records = sorted(records, key=lambda r: (r.book, r.chapter, r.verse))
         meta = {

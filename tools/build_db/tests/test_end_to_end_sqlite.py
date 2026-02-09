@@ -75,6 +75,7 @@ def test_safe_extract_blocks_zip_slip(tmp_path: Path) -> None:
     archive_path = tmp_path / "evil.zip"
     with ZipFile(archive_path, "w") as archive:
         archive.writestr("../escape.txt", "blocked")
+        archive.writestr("..\\..\\evil.txt", "blocked")
     target_dir = tmp_path / "out"
     try:
         safe_extract_zip(archive_path, target_dir)

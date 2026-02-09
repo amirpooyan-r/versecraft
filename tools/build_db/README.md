@@ -46,7 +46,10 @@ Our pipeline converts USFM into a simple verse table:
 - **Python 3.12+**
 - Run in a local virtual environment (**venv**) for isolation.
 - Dependencies are pinned in `requirements.txt` for reproducible builds.
-- Primary parser dependency: **usfm-grammar** (dev-only tooling dependency).
+- Primary v1 parser is the built-in **fallback parser**.
+- `usfm-grammar` is optional for verification and grammar-only runs.
+- On Windows, fallback mode works without native build tools.
+- Installing `usfm-grammar` may require C/C++ build tooling (for example MSVC on Windows).
 
 ---
 
@@ -103,6 +106,13 @@ The tool accepts either:
 
 For zip inputs, the tool should download (if URL), extract to a local cache folder, then parse.
 
+Parser modes:
+- `--parser fallback` uses fallback parser only.
+- `--parser grammar` uses `usfm-grammar` only. If unavailable or parsing fails, build fails.
+- `--parser auto` is the default and uses fallback parser output.
+- In `auto`, `--verify-parsers` runs grammar comparison when `usfm-grammar` is available.
+- `--verify-parsers` compares grammar output vs fallback output and fails on mismatch.
+
 Recommended local folders (ignored by git):
 - `tools/build_db/sources/` (place USFM zips or extracted folders here)
 - `tools/build_db/out/` (generated SQLite DBs)
@@ -131,6 +141,22 @@ After building a real translation DB, we run a quick sanity-check such as:
   - non-empty text for each verse
 
 If sanity-check fails, the build should exit with a non-zero code.
+
+---
+
+## Recommended v1 workflow
+
+1) Install deps in `tools/build_db`:
+- `pip install -r requirements.txt`
+- `pip install -e .`
+
+2) Build using fallback output (portable default):
+- `build-db --input <usfm_dir_or_zip> --out <sqlite_path> --translation-id <id> --translation-name <name> --parser auto --verify-parsers`
+
+3) For release prep, run verification in an environment with grammar dependencies available (Linux/WSL recommended):
+- `build-db --input <usfm_dir_or_zip> --out <sqlite_path> --translation-id <id> --translation-name <name> --parser auto --verify-parsers`
+
+Treat parser mismatches as blockers before publishing assets.
 
 ---
 
